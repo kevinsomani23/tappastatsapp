@@ -1702,7 +1702,7 @@ elif st.session_state.active_tab == "TOP PERFORMANCES":
             # TAB 2: STANDARD STATS (Table)
             with tab_std:
                 std_cols = ["Player", "Team", "Opponent", "Date", "MIN_CALC", "PTS", "FGM", "FGA", "FG%", "3PM", "3PA", "3P%", 
-                           "FTM", "FTA", "FT%", "OREB", "DREB", "REB", "AST", "TOV", "STL", "BLK", "PF", "DD2", "TD3", "+/-"]
+                           "FTM", "FTA", "FT%", "OREB", "DREB", "REB", "AST", "TOV", "STL", "BLK", "PF", "DD2", "TD3", "+/-", "GmScr"]
                 # Filter to available columns
                 available_cols = [c for c in std_cols if c in df_view.columns]
                 
@@ -2102,7 +2102,7 @@ elif st.session_state.active_tab == "TOURNAMENT STATS":
         with ts1:
             # Use same detailed columns as Top Performance
             std_cols = ["Player", "Team", "Opponent", "Date", "MIN_CALC", "PTS", "FGM", "FGA", "FG%", "3PM", "3PA", "3P%", 
-                       "FTM", "FTA", "FT%", "OREB", "DREB", "REB", "AST", "TOV", "STL", "BLK", "PF", "DD2", "TD3", "+/-"]
+                       "FTM", "FTA", "FT%", "OREB", "DREB", "REB", "AST", "TOV", "STL", "BLK", "PF", "DD2", "TD3", "+/-", "GmScr"]
             
             # Filter to available columns
             available_cols = [c for c in std_cols if c in df_display.columns]
