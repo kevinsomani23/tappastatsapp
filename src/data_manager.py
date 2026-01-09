@@ -9,14 +9,21 @@ import os
 def load_data(json_path=None):
     """Load the main JSON data. Trust data.json as source of truth."""
     try:
-        # data/processed/data.json
-        # Pointing to STAGING data
-        prod_path = r"h:\VIBE CODE\ind basketball\2staging\data\processed\data.json"
-        # Use json_path if provided, otherwise fallback to prod_path
-        actual_path = json_path if json_path else prod_path
-        
-        if not os.path.exists(actual_path):
-             actual_path = prod_path
+        # Use relative path for cloud deployment, fallback to absolute for local
+        if json_path:
+            actual_path = json_path
+        else:
+            # Try relative path first (for Streamlit Cloud)
+            relative_path = "data/processed/data.json"
+            # Fallback to staging absolute path for local development
+            staging_path = r"h:\VIBE CODE\ind basketball\2staging\data\processed\data.json"
+            
+            if os.path.exists(relative_path):
+                actual_path = relative_path
+            elif os.path.exists(staging_path):
+                actual_path = staging_path
+            else:
+                raise FileNotFoundError(f"data.json not found at {relative_path} or {staging_path}")
 
         with open(actual_path, "r", encoding='utf-8-sig') as f:
             data = json.load(f)
