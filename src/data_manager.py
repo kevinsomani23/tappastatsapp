@@ -86,9 +86,17 @@ def load_manual_scores():
 def load_schedule():
     """Load the compiled schedule CSV"""
     try:
-        # Point to production schedule
-        schedule_path = r"h:\VIBE CODE\ind basketball\2staging\compiled_schedule.csv"
-        df = pd.read_csv(schedule_path)
+        # Try relative path first (for Streamlit Cloud)
+        relative_path = "compiled_schedule.csv"
+        # Fallback to staging absolute path for local development
+        staging_path = r"h:\VIBE CODE\ind basketball\2staging\compiled_schedule.csv"
+        
+        if os.path.exists(relative_path):
+            df = pd.read_csv(relative_path)
+        elif os.path.exists(staging_path):
+            df = pd.read_csv(staging_path)
+        else:
+            return pd.DataFrame()
         return df
     except:
         return pd.DataFrame()
