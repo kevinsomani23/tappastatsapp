@@ -10,8 +10,8 @@ def load_data(json_path=None):
     """Load the main JSON data. Trust data.json as source of truth."""
     try:
         # data/processed/data.json
-        # HACK: Pointing to PROD data for verification
-        prod_path = r"h:\VIBE CODE\ind basketball\1prod\data\processed\data.json"
+        # Pointing to STAGING data
+        prod_path = r"h:\VIBE CODE\ind basketball\2staging\data\processed\data.json"
         # Use json_path if provided, otherwise fallback to prod_path
         actual_path = json_path if json_path else prod_path
         
@@ -56,7 +56,7 @@ def load_logos():
         path = "data/logos.json"
         if not os.path.exists(path):
              # Try prod path
-             path = r"h:\VIBE CODE\ind basketball\1prod\data\logos.json" # Guessing location or just skip
+             path = r"h:\VIBE CODE\ind basketball\2staging\data\logos.json" # Staging location
              if not os.path.exists(path):
                  path = r"h:\VIBE CODE\ind basketball\data\logos.json"
 
@@ -69,7 +69,7 @@ def load_manual_scores():
     try:
         path = "data/processed/manual_scores.json"
         if not os.path.exists(path):
-            path = r"h:\VIBE CODE\ind basketball\1prod\data\processed\manual_scores.json"
+            path = r"h:\VIBE CODE\ind basketball\2staging\data\processed\manual_scores.json"
             
         with open(path, "r") as f:
             return json.load(f)
@@ -80,7 +80,7 @@ def load_schedule():
     """Load the compiled schedule CSV"""
     try:
         # Point to production schedule
-        schedule_path = r"h:\VIBE CODE\ind basketball\1prod\compiled_schedule.csv"
+        schedule_path = r"h:\VIBE CODE\ind basketball\2staging\compiled_schedule.csv"
         df = pd.read_csv(schedule_path)
         return df
     except:
